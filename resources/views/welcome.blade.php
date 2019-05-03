@@ -80,6 +80,7 @@
             @endif
 
             <div class="content">
+                <a  id="enviarEmail" href="{{ route('EmailDeudores') }}" class="btn btn-primary">Deudores</a>
                 <div class="title m-b-md">
                     Talvez funciona
                 </div>

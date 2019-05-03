@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::name('librosList')->get('/Libros','LibroController@index');
+Route::name('EmailDeudores')->get('/emailDeudores','Notificaciones@Deudores');

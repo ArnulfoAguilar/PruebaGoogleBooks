@@ -27,9 +27,11 @@ return [
     | applications. A default option is provided that is compatible with
     | the Mailgun mail service which will provide reliable deliveries.
     |
-    */
 
     'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    */
+
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,6 +42,7 @@ return [
     | users of the application. Like the host we have set this value to
     | stay compatible with the Mailgun e-mail application by default.
     |
+    'port' => env('MAIL_PORT', 587),
     */
 
     'port' => env('MAIL_PORT', 587),
