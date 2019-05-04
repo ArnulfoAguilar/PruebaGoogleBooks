@@ -119,17 +119,46 @@
                 for(i=0; i<data.items.length; i++){
                     //document.getElementById('results').innerHTML +=
                     results.innerHTML +=
-                   ' <div class="card" style="width: 18rem;">'+
-  '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" class="card-img-top " style="max-width:250px;max-height: 250px;display: block;' +
+                     
+                   ' <div class="card border-primary " style="width: 18rem;">'+
+                    '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" class="card-img-top " style="max-width:250px;max-height: 250px;display: block;' +
                         '  margin-left: auto;' +
                         '  margin-right: auto;" >'+
-  '<div class="card-body">'+
-    '<h5 class="card-title">'+data.items[i].volumeInfo.title+'</h5>'+
-    '<p class="card-text">'+data.items[i].volumeInfo.authors+'</p>'+
-    '<a href="#" class="btn btn-primary">Clic</a>'+
-  '</div>'+
-'</div>'
-                   //console.log(data.items[i].volumeInfo.title)
+                    '<div class="card-body">'+
+                    '<h5 class="card-title">'+data.items[i].volumeInfo.title+'</h5>'+
+                    '<p class="card-text">'+data.items[i].volumeInfo.authors+'</p>'+
+                    '<a href="#" class="btn btn-primary">Clic</a>'+
+                    '</div>'+
+                    '</div>'
+
+/*
+
+                   ' <div class="card border-primary " style="width: 18rem;">'+
+                   '<img src="'+data.items[i+1].volumeInfo.imageLinks.thumbnail+'" class="card-img-top " style="max-width:250px;max-height: 250px;display: block;' +
+                   '  margin-left: auto;' +
+                   '  margin-right: auto;" >'+
+                   '<div class="card-body">'+
+                   '<h5 class="card-title">'+data.items[i+1].volumeInfo.title+'</h5>'+
+                   '<p class="card-text">'+data.items[i+1].volumeInfo.authors+'</p>'+
+                   '<a href="#" class="btn btn-primary">Clic</a>'+
+                   '</div>'+
+                   '</div>'+
+
+
+
+                    ' <div class="card border-primary " style="width: 18rem;">'+
+                    '<img src="'+data.items[i+2].volumeInfo.imageLinks.thumbnail+'" class="card-img-top " style="max-width:250px;max-height: 250px;display: block;' +
+                    '  margin-left: auto;' +
+                    '  margin-right: auto;" >'+
+                    '<div class="card-body">'+
+                    '<h5 class="card-title">'+data.items[i+2].volumeInfo.title+'</h5>'+
+                    '<p class="card-text">'+data.items[i+2].volumeInfo.authors+'</p>'+
+                    '<a href="#" class="btn btn-primary">Clic</a>'+
+                    '</div>'+
+                    '</div>'+
+                           '</div>'
+
+  */                 //console.log(data.items[i].volumeInfo.title)
                 }
             },
             type: 'GET'
