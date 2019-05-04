@@ -80,11 +80,11 @@
             @endif
 
             <div class="content">
+
                 <a  id="enviarEmail" href="{{ route('EmailDeudores') }}" class="btn btn-primary">Deudores</a>
                 <div class="title m-b-md">
                     Talvez funciona
                 </div>
-
         
                 <div class="form-group">
                     <label for="examplebook">Nombre de Libro</label>
@@ -92,9 +92,12 @@
                     <small id="emailHelp" class="form-text text-muted">Pueden aparecer muchas opciones en los libros.</small>
                 </div>
                 <button  id="button" class="btn btn-primary">Aceptar</button>
-                <div id="results" class="card-columns" >            
-                </div>
             </div>
+        </div>
+                <div id="results" class="card-columns" >
+                </div>
+
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script
   src="https://code.jquery.com/jquery-3.4.0.js"
@@ -108,15 +111,18 @@
         document.getElementById('results').innerHTML=""
 
         $.ajax({
-            url:    "https://www.googleapis.com/books/v1/volumes?q=" + search,
+            url:    "https://www.googleapis.com/books/v1/volumes?q=" + search,//+"&maxResults=40",
             dataType:   "json",
 
             success: function(data){
                 console.log(data)
                 for(i=0; i<data.items.length; i++){
-                    document.getElementById('results').innerHTML +=  
+                    //document.getElementById('results').innerHTML +=
+                    results.innerHTML +=
                    ' <div class="card" style="width: 18rem;">'+
-  '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" class="card-img-top" style="max-width:200px;max-height: 200px;" alt="...">'+
+  '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" class="card-img-top " style="max-width:250px;max-height: 250px;display: block;' +
+                        '  margin-left: auto;' +
+                        '  margin-right: auto;" >'+
   '<div class="card-body">'+
     '<h5 class="card-title">'+data.items[i].volumeInfo.title+'</h5>'+
     '<p class="card-text">'+data.items[i].volumeInfo.authors+'</p>'+
@@ -132,5 +138,6 @@
     }
     document.getElementById('button').addEventListener('click', bookSearch, false)
     </script>
+
     </body>
 </html>
