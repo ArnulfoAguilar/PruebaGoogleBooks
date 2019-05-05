@@ -61,6 +61,8 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+
         </style>
     </head>
     <body>
@@ -94,6 +96,7 @@
                 <button  id="button" class="btn btn-primary">Aceptar</button>
             </div>
         </div>
+
                 <div id="results" class="card-columns" >
                 </div>
 
@@ -104,7 +107,9 @@
   integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
   crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script>
+
+        <!--Script para buscar libro escrito en el input-->
+        <script>
     function bookSearch(){
         console.log("Esta funcion sirve!")
         var search = document.getElementById('examplebook').value
@@ -119,46 +124,18 @@
                 for(i=0; i<data.items.length; i++){
                     //document.getElementById('results').innerHTML +=
                     results.innerHTML +=
-                     
-                   ' <div class="card border-primary " style="width: 18rem;">'+
+
+                   ' <div class="card border-primary " id="'+data.items[i].id+'" style="width: 18rem;">'+
                     '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" class="card-img-top " style="max-width:250px;max-height: 250px;display: block;' +
                         '  margin-left: auto;' +
                         '  margin-right: auto;" >'+
                     '<div class="card-body">'+
                     '<h5 class="card-title">'+data.items[i].volumeInfo.title+'</h5>'+
                     '<p class="card-text">'+data.items[i].volumeInfo.authors+'</p>'+
-                    '<a href="#" class="btn btn-primary">Clic</a>'+
+                    '<a href="#" id="'+data.items[i].id+'" class="btn btn-primary" onclick="bookChoose(this)">Clic</a>'+
                     '</div>'+
                     '</div>'
 
-/*
-
-                   ' <div class="card border-primary " style="width: 18rem;">'+
-                   '<img src="'+data.items[i+1].volumeInfo.imageLinks.thumbnail+'" class="card-img-top " style="max-width:250px;max-height: 250px;display: block;' +
-                   '  margin-left: auto;' +
-                   '  margin-right: auto;" >'+
-                   '<div class="card-body">'+
-                   '<h5 class="card-title">'+data.items[i+1].volumeInfo.title+'</h5>'+
-                   '<p class="card-text">'+data.items[i+1].volumeInfo.authors+'</p>'+
-                   '<a href="#" class="btn btn-primary">Clic</a>'+
-                   '</div>'+
-                   '</div>'+
-
-
-
-                    ' <div class="card border-primary " style="width: 18rem;">'+
-                    '<img src="'+data.items[i+2].volumeInfo.imageLinks.thumbnail+'" class="card-img-top " style="max-width:250px;max-height: 250px;display: block;' +
-                    '  margin-left: auto;' +
-                    '  margin-right: auto;" >'+
-                    '<div class="card-body">'+
-                    '<h5 class="card-title">'+data.items[i+2].volumeInfo.title+'</h5>'+
-                    '<p class="card-text">'+data.items[i+2].volumeInfo.authors+'</p>'+
-                    '<a href="#" class="btn btn-primary">Clic</a>'+
-                    '</div>'+
-                    '</div>'+
-                           '</div>'
-
-  */                 //console.log(data.items[i].volumeInfo.title)
                 }
             },
             type: 'GET'
@@ -167,6 +144,46 @@
     }
     document.getElementById('button').addEventListener('click', bookSearch, false)
     </script>
+        <!--/Script para buscar libro escrito en input-->
+<!--Script para mandar la card seleccionada al formulario-->
+        <script>
+            function bookChoose(btn){
+                console.log("Funcion Choose!")
+                var search = btn.id
+                console.log(search)
+                document.getElementById('results').innerHTML=""
+
+                $.ajax({
+                    url:    "https://www.googleapis.com/books/v1/volumes/" + search,//+"&maxResults=40",
+                    dataType:   "json",
+
+                    success: function(data){
+                        console.log(data)
+
+                            //document.getElementById('results').innerHTML +=
+                            results.innerHTML +=
+
+                                ' <div class="card border-primary " id="'+data.id+'" style="width: 18rem;">'+
+                                '<img src="'+data.volumeInfo.imageLinks.thumbnail+'" class="card-img-top " style="max-width:250px;max-height: 250px;display: block;' +
+                                '  margin-left: auto;' +
+                                '  margin-right: auto;" >'+
+                                '<div class="card-body">'+
+                                '<h5 class="card-title">'+data.volumeInfo.title+'</h5>'+
+                                '<p class="card-text">'+data.volumeInfo.authors+'</p>'+
+                                '<a href="#" id="'+data.id+'" class="btn btn-primary">Clic</a>'+
+                                '</div>'+
+                                '</div>'
+
+
+                    },
+                    type: 'GET'
+                });
+
+            }
+
+        </script>
+    <!--Fin de card seleccionada-->
+
 
     </body>
 </html>
